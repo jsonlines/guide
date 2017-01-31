@@ -164,5 +164,54 @@ $ cat datagov100.json | jsonmap "if (this.license_id === 'cc-zero') { return 'Op
 For more examples you can check out the [jsonmap README](https://github.com/jsonlines/jsonmap/).
 
 ## jsonreduce
+
+Work in progress
+
 ## jsonstats
+
+Work in progress
+
 ## useful pipelines
+
+Here are some more tools that work really well in combination with JSON Lines tools:
+
+### `head`
+
+Built in to Unix. Lets you see the beginning N lines of a stream:
+
+```
+$ cat data.json | head -n1
+{"license_title":"Creative Commons CCZero","maintainer":"Don Lees","relationships_...
+```
+
+### `json`
+
+Available as `npm install json -g` from npm, it pretty prints a JSON object!
+
+```
+$ cat data.json | head -n1 | json
+{
+  "license_title": "Creative Commons CCZero",
+  "maintainer": "Don Lees",
+  "relationships_as_object": [],
+  "private": false,
+...
+```
+
+### `wc`
+
+Built in to Unix for doing word counts, but can also count lines, very useful for working with JSON Lines to count how many lines are in a file or filter
+
+```
+$ cat data.json | wc -l
+100
+```
+
+### `grep`
+
+Built in to Unix, useful if you just want to filter lines based on a regular expression
+
+```
+$ cat data.json | grep CCZero | wc -l
+8
+```
