@@ -2,10 +2,14 @@
 
 Tutorial on streaming JSON data analysis on the command line.
 
-- [jsonfilter](#jsonfilter)
-- [jsonmap](#jsonmap)
-- [jsonreduce](#jsonreduce) (WIP)
-- [jsonstats](#jsonstats) (WIP)
+#### Table of Contents
+
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [`jsonfilter`](#jsonfilter)
+- [`jsonmap`](#jsonmap)
+- [`jsonreduce`](#jsonreduce) (WIP)
+- [`jsonstats`](#jsonstats) (WIP)
 - [useful pipelines](#useful_pipelines) (WIP)
 
 ## Introduction
