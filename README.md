@@ -4,7 +4,7 @@ Tutorial on streaming JSON data analysis on the command line.
 
 ## Introduction
 
-JSON Lines (also known as Newline Delimited JSON) is a really simple way to store JSON that makes it very friendly for data processing and analysis.
+[JSON Lines](http://jsonlines.org/) (also known as [Newline Delimited JSON](http://ndjson.org/)) is a really simple way to store JSON that makes it very friendly for data processing and analysis. To store data in JSON Lines format you simply write one JSON stringified object per line.
 
 Usually you would store multiple JSON objects in a single, pretty printed JSON structure in a file like this:
 
@@ -105,6 +105,53 @@ $ cat data.json | jsonfilter organization.name | sort | uniq -c
    5 "va-gov"
 ```
 
+You can view more examples in the [jsonfilter README](https://github.com/jsonlines/jsonfilter)
+
 ## jsonmap
+
+This command lets you morph data from one form into another. As opposed to `jsonfilter` which takes a JSON selector expression, `jsonmap` takes a short JavaScript expression as input that gets applied to each row of incoming JSON, and returns a new Object.
+
+For example if we wanted to grab just a couple of fields from each Data.gov metadata item we could do this:
+
+```
+$ cat data.json | jsonmap "{name: this.name, organization: this.organization.name}"
+{"name":"va-national-formulary","organization":"va-gov"}
+{"name":"safer-company-snapshot-safer-company-snapshot","organization":"dot-gov"}
+{"name":"fatality-analysis-reporting-system-fars-ftp-raw-data","organization":"dot-gov"}
+...
+```
+
+The variable `this` in the expression has the data for the row of JSON. You can also use Template Strings:
+
+```
+$ cat data.json | jsonmap '`Notes: ${this.notes.slice(0, 60)}...`'
+"Notes: The VA National Formulary is a listing of products (drugs an..."
+"Notes: The Company Snapshot is a concise electronic record of compa..."
+"Notes: The program collects data for analysis of traffic safety cra..."
+...
+```
+
+If your expression starts with something other than <pre>{</pre> or <pre>`</pre> it will be used as the function body. You can either modify `this` which will get returned at the end of the function:
+
+```
+$ cat datagov100.json | jsonmap "if (this.maintainer) this.maintainer = this.maintainer.toUpperCase()"
+{"license_title":"Creative Commons CCZero","maintainer":"DON LEES","relationships_...
+{"license_title":"Other License Specified","maintainer":"JAMIE VASSER","relationsh...
+{"license_title":"U.S. Government Work","maintainer":"LIXIN ZHAO","relationships_a...
+...
+```
+
+Or return your own custom data:
+
+```
+$ cat datagov100.json | jsonmap "if (this.license_id === 'cc-zero') { return 'Open' } else { return 'Closed'}"
+"Open"
+"Closed"
+"Closed"
+...
+```
+
+For more examples you can check out the [jsonmap README](https://github.com/jsonlines/jsonmap/).
+
 ## jsonreduce
 ## jsonstats
