@@ -131,7 +131,7 @@ $ cat data.json | jsonmap '`Notes: ${this.notes.slice(0, 60)}...`'
 ...
 ```
 
-If your expression starts with something other than <code>{</code> or <code>`</code> it will be used as the function body. You can either modify `this` which will get returned at the end of the function:
+If your expression starts with something other than the above two things (objects or template literals) it will simply be used as the function body that gets executed on each row. You can either modify `this` which will get returned at the end of the function:
 
 ```
 $ cat datagov100.json | jsonmap "if (this.maintainer) this.maintainer = this.maintainer.toUpperCase()"
