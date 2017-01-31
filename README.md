@@ -48,6 +48,8 @@ This guide assumes you are on a UNIX machine, but all of the `json*` tools work 
 
 The `jsonlines` GitHub organization houses a collection of handy modules for processing JSON Lines data on the command line.
 
+You should also check out the `ndjson-cli` suite from Mike Bostock which offers even more tools, available at https://github.com/mbostock/ndjson-cli, the concepts in this guide are the same.
+
 To install the tools do the following:
 
 1. [Install a recent Node.js](https://nodejs.org/en/download/) version (LTS Recommended) on your computer
