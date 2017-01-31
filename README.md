@@ -2,6 +2,12 @@
 
 Tutorial on streaming JSON data analysis on the command line.
 
+- [jsonfilter](#jsonfilter)
+- [jsonmap](#jsonmap)
+- [jsonreduce](#jsonreduce) (WIP)
+- [jsonstats](#jsonstats) (WIP)
+- [useful pipelines](#useful_pipelines) (WIP)
+
 ## Introduction
 
 [JSON Lines](http://jsonlines.org/) (also known as [Newline Delimited JSON](http://ndjson.org/)) is a really simple way to store JSON that makes it very friendly for data processing and analysis. To store data in JSON Lines format you simply write one JSON stringified object per line.
@@ -155,3 +161,4 @@ For more examples you can check out the [jsonmap README](https://github.com/json
 
 ## jsonreduce
 ## jsonstats
+## useful pipelines
