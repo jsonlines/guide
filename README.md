@@ -5,7 +5,7 @@ Tutorial on streaming JSON data analysis on the command line.
 #### Table of Contents
 
 - [Introduction](#introduction)
-- [Installation](#installation)
+- [Installation](#installing-json-lines-tools)
 - [`jsonfilter`](#jsonfilter)
 - [`jsonmap`](#jsonmap)
 - [`jsonreduce`](#jsonreduce) (WIP)
