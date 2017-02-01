@@ -146,7 +146,7 @@ $ cat data.json | jsonmap '`Notes: ${this.notes.slice(0, 60)}...`'
 If your expression starts with something other than the above two things (objects or template literals) it will simply be used as the function body that gets executed on each row. You can either modify `this` which will get returned at the end of the function:
 
 ```
-$ cat datagov100.json | jsonmap "if (this.maintainer) this.maintainer = this.maintainer.toUpperCase()"
+$ cat data.json | jsonmap "if (this.maintainer) this.maintainer = this.maintainer.toUpperCase()"
 {"license_title":"Creative Commons CCZero","maintainer":"DON LEES","relationships_...
 {"license_title":"Other License Specified","maintainer":"JAMIE VASSER","relationsh...
 {"license_title":"U.S. Government Work","maintainer":"LIXIN ZHAO","relationships_a...
@@ -156,7 +156,7 @@ $ cat datagov100.json | jsonmap "if (this.maintainer) this.maintainer = this.mai
 Or return your own custom data:
 
 ```
-$ cat datagov100.json | jsonmap "if (this.license_id === 'cc-zero') { return 'Open' } else { return 'Closed'}"
+$ cat data.json | jsonmap "if (this.license_id === 'cc-zero') { return 'Open' } else { return 'Closed'}"
 "Open"
 "Closed"
 "Closed"
