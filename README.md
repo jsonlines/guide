@@ -8,8 +8,8 @@ Tutorial on streaming JSON data analysis on the command line.
 - [Installation](#installing-json-lines-tools)
 - [`jsonfilter`](#jsonfilter)
 - [`jsonmap`](#jsonmap)
-- [`jsonreduce`](#jsonreduce) (WIP)
-- [`jsonstats`](#jsonstats) (WIP)
+- [`jsonstats`](#jsonstats)
+- [`ndjson-reduce`](#ndjson-reduce)
 - [useful pipelines](#useful_pipelines) (WIP)
 
 ## Introduction
