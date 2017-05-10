@@ -10,7 +10,7 @@ Tutorial on streaming JSON data analysis on the command line.
 - [`jsonmap`](#jsonmap)
 - [`jsonstats`](#jsonstats)
 - [`ndjson-reduce`](#ndjson-reduce)
-- [useful pipelines](#useful_pipelines) (WIP)
+- [useful pipelines](#useful_pipelines)
 
 ## Introduction
 
