@@ -56,7 +56,7 @@ To install the tools do the following:
 2. Using `npm`, install the JSON Lines CLI Tools
 
 ```
-$ npm install -g jsonfilter jsonmap jsonreduce jsonstats
+$ npm install -g jsonfilter jsonmap jsonstats
 ```
 
 If you receive permissions errors, you may need to use `sudo` or [change your permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
@@ -165,13 +165,57 @@ $ cat data.json | jsonmap "if (this.license_id === 'cc-zero') { return 'Open' } 
 
 For more examples you can check out the [jsonmap README](https://github.com/jsonlines/jsonmap/).
 
-## jsonreduce
-
-Work in progress
-
 ## jsonstats
 
-Work in progress
+Sometimes you want to get numerical statistics from your data. For example, the metadata includes some page view count metrics:
+
+```
+$ cat data.json | jsonfilter tracking_summary.total | head -n5
+11754
+2241
+1925
+1139
+3247
+```
+
+You can pipe a stream of numbers to `jsonstats` and when you finish piping, some summary statistics will be printed out:
+
+```
+$ cat data.json | jsonfilter tracking_summary.total | jsonstats | json
+{
+  "max": 11754,
+  "min": 3,
+  "n": 100,
+  "_geometric_mean": 2.0157057404897112e+252,
+  "_reciprocal_sum": 1.2014730007931738,
+  "mean": 741.4800000000001,
+  "ss": 165161200.95999998,
+  "sum": 74148,
+  "_seen_this": 1,
+  "_mode": 11754,
+  "_mode_valid": true,
+  "variance": 1651612.0095999998,
+  "standard_deviation": 1285.1505785704646,
+  "geometric_mean": 333.4604034827265,
+  "harmonic_mean": 83.23116702080132,
+  "mode": 11754,
+  "_max_seen": 1,
+  "_last": 189
+}
+```
+
+## ndjson-reduce
+
+If you want to take some JSON Lines output and combine the lines into a normal single JSON array of objects that you can use with `JSON.parse` in your programs, you can use the `ndjson-reduce` command.
+
+The `ndjson-reduce` command gets installed if you run `npm install ndjson-cli -g`, along with some other great tools from the [NDJSON CLI](http://npmjs.org/ndjson-cli) package by Mike Bostock, which offers similar functionality to the other tools in this guide.
+
+To generate a single JS array with all of the unique organization names:
+
+```
+$ cat data.json | jsonfilter organization.name | sort | uniq | ndjson-reduce
+["census-gov","dot-gov","gsa-gov","nsf-gov","opm-gov","ssa-gov","usgs-gov","va-gov"]
+```
 
 ## useful pipelines
 
