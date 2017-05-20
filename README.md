@@ -217,6 +217,10 @@ $ cat data.json | jsonfilter organization.name | sort | uniq | ndjson-reduce
 ["census-gov","dot-gov","gsa-gov","nsf-gov","opm-gov","ssa-gov","usgs-gov","va-gov"]
 ```
 
+The only catch with `ndjson-reduce` is it isn't streaming, meaning it assumes your data can fit in memory easily, and be small enough for node to call` JSON.stringify` on, the limit of which is usually around 500MB or so of JSON.
+
+If you are looking for a streaming alternative to `ndjson-reduce` then check out `https://www.npmjs.com/package/json-write-stream`.
+
 ## useful pipelines
 
 Here are some more tools that work really well in combination with JSON Lines tools:
